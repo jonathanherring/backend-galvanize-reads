@@ -48,5 +48,7 @@ exports.seed = function(knex, Promise) {
         },
 
       ]);
-    });
+    }).then(function() {
+      return knex.raw('alter sequence book_id_seq restart with 7')
+    })
 };

@@ -1,9 +1,9 @@
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('book-author').del()
+  return knex('book_author').del()
     .then(function() {
       // Inserts seed entries
-      return knex('book-author').insert([{
+      return knex('book_author').insert([{
           id: 1,
           book_id: 1,
           author_id: 1,
@@ -44,5 +44,7 @@ exports.seed = function(knex, Promise) {
           author_id: 4,
         },
       ]);
-    });
+    }).then(function() {
+      return knex.raw('alter sequence book_author_id_seq restart with 9')
+    })
 };

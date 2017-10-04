@@ -46,5 +46,7 @@ exports.seed = function(knex, Promise) {
           portrait_url: "https://s3-us-west-2.amazonaws.com/assessment-images/galvanize_reads/photos/steve_holden.jpg"
         },
       ]);
-    });
+    }).then(function() {
+      return knex.raw('alter sequence author_id_seq restart with 7')
+    })
 };
